@@ -82,12 +82,9 @@ public class BcSmartspaceCardWeatherForecast extends BcSmartspaceCardSecondary {
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final boolean setSmartspaceActions(SmartspaceTarget smartspaceTarget, BcSmartspaceDataPlugin.SmartspaceEventNotifier smartspaceEventNotifier, BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo) {
         boolean isWeatherEnabled = Settings.Secure.getIntForUser(getContext().getContentResolver(),
-                    Settings.Secure.LOCK_SCREEN_WEATHER_ENABLED,
-                    0, UserHandle.USER_CURRENT) != 0;
-        boolean isOmniWeatherEnabled = Settings.System.getIntForUser(getContext().getContentResolver(),
-                    Settings.System.LOCKSCREEN_WEATHER_ENABLED,
-                    0, UserHandle.USER_CURRENT) != 0;
-        if (!isWeatherEnabled || isOmniWeatherEnabled) {
+                    Settings.Secure.LOCKSCREEN_SMARTSPACE_ENABLED,
+                    1, UserHandle.USER_CURRENT) != 0;
+        if (!isWeatherEnabled) {
             return false;
         }
         Bundle extras;
